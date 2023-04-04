@@ -14,17 +14,39 @@ namespace Gallows
 		public Words()
 		{
 			this.word = string.Empty;
-			FillWordsArray();
+			this.wordsArray = FillWordsArray();
 		}
 		public string Word { get => word = GetWord(); private set => Word = word; }
-		private void FillWordsArray()
+		private string[] FillWordsArray()
 		{
-			this.wordsArray = new string[]
+			string[] words = new string[]
 			{
 				"word 1",
-				"word 2"
+				"word 2",
+				"word 3",
+				"word 4",
+				"word 5"
 			};
+			return words;
 		}
 		private string GetWord() => wordsArray[Random.Shared.Next(wordsArray.Length)];
+		public string GetEncodingWord(string word)
+		{
+			string str = string.Empty;
+			for (int i = 0; i < word.Length; i++)
+				str += '*';
+			return str;
+		}
+		public string GetUpdatedWord(string word, string str, char c)
+		{
+			string newStr = string.Empty;
+			for (int i = 0; i < word.Length; i++)
+			{
+				if (word[i] == c && str[i] == '*')
+					newStr += c;
+				newStr += str[i];
+			}
+		return newStr;
+		}
 	}
 }
