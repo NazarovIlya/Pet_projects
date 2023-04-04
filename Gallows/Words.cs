@@ -37,16 +37,16 @@ namespace Gallows
 				str += '*';
 			return str;
 		}
-		public string GetUpdatedWord(string word, string str, char c)
+		public string GetUpdatedWord(string word, string currentWord, char c)
 		{
-			string newStr = string.Empty;
+			string newCurrent = string.Empty;
 			for (int i = 0; i < word.Length; i++)
 			{
-				if (word[i] == c && str[i] == '*')
-					newStr += c;
-				newStr += str[i];
+				if (word[i] == c && currentWord[i] == '*')
+					newCurrent += c;
+				newCurrent += currentWord[i];
 			}
-		return newStr;
+		return newCurrent;
 		}
 	}
 }
