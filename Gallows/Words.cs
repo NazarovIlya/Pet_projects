@@ -40,10 +40,11 @@ namespace Gallows
 		public string GetUpdatedWord(string word, string currentWord, char c)
 		{
 			string newCurrent = string.Empty;
-			for (int i = 0; i < word.Length; i++)
+			for (int i = 0; i < currentWord.Length; i++)
 			{
 				if (word[i] == c && currentWord[i] == '*')
 					newCurrent += c;
+				else
 				newCurrent += currentWord[i];
 			}
 		return newCurrent;

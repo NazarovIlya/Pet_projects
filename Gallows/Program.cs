@@ -16,5 +16,13 @@ Console.WriteLine(words.Word);
 Console.WriteLine(words.Word);
 Console.WriteLine(words.Word);
 
-Console.WriteLine(words.GetEncodingWord("fddgwgdmv"));
-Console.WriteLine(words.GetUpdatedWord("fddgwgdmv", words.GetEncodingWord("fddgwgdmv"), 'd'));
+string word = "fddgwgdmv";
+
+string current = words.GetEncodingWord(word);
+Console.WriteLine(current);
+
+current = words.GetUpdatedWord(word, current, 'd');
+Console.WriteLine(current);
+
+current = words.GetUpdatedWord(word, current, 'g');
+Console.WriteLine(current);
