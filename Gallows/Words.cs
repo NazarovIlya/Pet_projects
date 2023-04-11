@@ -8,15 +8,17 @@ namespace Gallows
 {
 	internal class Words
 	{
+		char symbol;
 		private string word;
 		private string[] wordsArray;
 
-		public Words()
+		public Words(char symbol)
 		{
+			this.symbol = symbol;
 			this.word = string.Empty;
 			this.wordsArray = FillWordsArray();
 		}
-		public string Word { get => word = GetWord(); private set => Word = word; }
+		public string Word { get => word = GetWord(); private set => this.word = value; }
 		private string[] FillWordsArray()
 		{
 			string[] words = new string[]
@@ -34,7 +36,7 @@ namespace Gallows
 		{
 			string str = string.Empty;
 			for (int i = 0; i < word.Length; i++)
-				str += '*';
+				str += this.symbol;
 			return str;
 		}
 		public string GetUpdatedWord(string word, string currentWord, char c)
@@ -42,7 +44,7 @@ namespace Gallows
 			string newCurrent = string.Empty;
 			for (int i = 0; i < currentWord.Length; i++)
 			{
-				if (word[i] == c && currentWord[i] == '*')
+				if (word[i] == c && currentWord[i] == this.symbol)
 					newCurrent += c;
 				else
 				newCurrent += currentWord[i];

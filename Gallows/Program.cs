@@ -8,7 +8,9 @@
 
 using Gallows;
 
-Words words = new Words();
+Render render = new Render();
+
+Words words = new Words('*');
 Console.WriteLine(words.Word);
 Console.WriteLine(words.Word);
 Console.WriteLine(words.Word); 
@@ -18,6 +20,8 @@ Console.WriteLine(words.Word);
 
 string word = "fddgwgdmv";
 
+render.Draw(1);
+
 string current = words.GetEncodingWord(word);
 Console.WriteLine(current);
 
@@ -26,3 +30,4 @@ Console.WriteLine(current);
 
 current = words.GetUpdatedWord(word, current, 'g');
 Console.WriteLine(current);
+
