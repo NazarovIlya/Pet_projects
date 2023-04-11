@@ -8,26 +8,7 @@
 
 using Gallows;
 
-Render render = new Render();
+Game game = new Game();
 
-Words words = new Words('*');
-Console.WriteLine(words.Word);
-Console.WriteLine(words.Word);
-Console.WriteLine(words.Word); 
-Console.WriteLine(words.Word);
-Console.WriteLine(words.Word);
-Console.WriteLine(words.Word);
-
-string word = "fddgwgdmv";
-
-render.Draw(1);
-
-string current = words.GetEncodingWord(word);
-Console.WriteLine(current);
-
-current = words.GetUpdatedWord(word, current, 'd');
-Console.WriteLine(current);
-
-current = words.GetUpdatedWord(word, current, 'g');
-Console.WriteLine(current);
+game.StartGame();
 

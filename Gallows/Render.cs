@@ -11,10 +11,12 @@ namespace Gallows
 	{
 		private int x;
 		private int y;
-		public Render()
+		private int lineCount;
+		public Render(int x, int y, int linesCount)
 		{
-			this.x = 0;
-			this.y = 0;
+			this.x = x;
+			this.y = y;
+			this.lineCount = linesCount;
 		}
 
 		public void Draw(int count)
@@ -27,14 +29,14 @@ namespace Gallows
 			Console.Clear();
 			int curr = 0;
 			this.x = 1; this.y = 0;	
-			for (int i = 0; i < 12; i++)
+			for (int i = 0; i < this.lineCount; i++)
 			{
 				Console.SetCursorPosition(x, y++);
 				Console.WriteLine("||");
 			}
 
 			this.x = 1; this.y = 0;
-			for (int i = 0; i < 18; i++)
+			for (int i = 0; i < this.lineCount * 1.5; i++)
 			{
 				Console.SetCursorPosition(++x, y);
 				Console.WriteLine("=");
@@ -47,7 +49,7 @@ namespace Gallows
 				Console.WriteLine("|");
 			}
 				
-			Console.SetCursorPosition(0, 14);
-        }
+			Console.SetCursorPosition(0, ++this.lineCount);
+		}
 	}
 }
