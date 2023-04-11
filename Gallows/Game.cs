@@ -6,34 +6,46 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal class Game
-	{
-		public Game() { }
+    internal class Game
+    {
+        public int Y { get; set; }
+        public int X { get; set; }
+        public int linesCount { get; set; }
+        public Game(int y, int x, int linesCount)
+        {
+            this.Y = y;
+            this.X = x;
+            this.linesCount = linesCount;
+        }
 
-		public void StartGame()
-		{
-			Render render = new Render(0, 0, 12);
+        public void StartGame()
+        {
+            
+            Words words = new Words('*');
+            Console.WriteLine(words.Word);
+            Console.WriteLine(words.Word);
+            Console.WriteLine(words.Word);
+            Console.WriteLine(words.Word);
+            Console.WriteLine(words.Word);
+            Console.WriteLine(words.Word);
 
-			Words words = new Words('*');
-			Console.WriteLine(words.Word);
-			Console.WriteLine(words.Word);
-			Console.WriteLine(words.Word);
-			Console.WriteLine(words.Word);
-			Console.WriteLine(words.Word);
-			Console.WriteLine(words.Word);
+			Console.Clear();
 
-			string word = "fddgwgdmv";
+			//(this.X, this.Y) = Console.GetCursorPosition(); //! TODO
 
+			Render render = new Render(this.Y, this.X, this.linesCount);
 			render.Draw(1);
 
-			string current = words.GetEncodingWord(word);
-			Console.WriteLine(current);
+            string word = "fddgwgdmv";
 
-			current = words.GetUpdatedWord(word, current, 'd');
-			Console.WriteLine(current);
+            string current = words.GetEncodingWord(word);
+            Console.WriteLine(current);
 
-			current = words.GetUpdatedWord(word, current, 'g');
-			Console.WriteLine(current);
-		}
-	}
+            current = words.GetUpdatedWord(word, current, 'd');
+            Console.WriteLine(current);
+
+            current = words.GetUpdatedWord(word, current, 'g');
+            Console.WriteLine(current);
+        }
+    }
 }

@@ -26,8 +26,6 @@ namespace Gallows
 		}
 		private void DrawGallows(int count)
 		{
-			Console.Clear();
-			int curr = 0;
 			this.x = 1; this.y = 0;	
 			for (int i = 0; i < this.lineCount; i++)
 			{
