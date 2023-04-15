@@ -21,73 +21,43 @@ namespace Gallows
 
         public void StartGame()
         {
-            
+            Console.Clear();
+
             Words words = new Words('*');
-            Console.WriteLine(words.Word);
-            Console.WriteLine(words.Word);
-            Console.WriteLine(words.Word);
-            Console.WriteLine(words.Word);
-            Console.WriteLine(words.Word);
-            Console.WriteLine(words.Word);
-
-			Console.Clear();
-
-			//(this.X, this.Y) = Console.GetCursorPosition(); //! TODO
             View view = new View();
-			Render render = new Render(this.Y, this.X, this.linesCount);
+            Render render = new Render(this.Y, this.X, this.linesCount);
             render.VerticalSymbol = "|";
             render.HorizontalSymbol = "=";
 
-			//render.Draw(7);
+            string word = words.Word;
+            string current = words.GetEncodingWord(word);
 
-			string word = words.Word;
-			string current = words.GetEncodingWord(word);
-			
-			view.ShowWord(word);
+            view.ShowWord(word);
 
-			int count = 0;
+            int count = 0;
             int lineNumber = 0;
-			while (render.IsOver)
+            while (render.IsOver)
             {
                 ++lineNumber;
-				Console.SetCursorPosition(0, linesCount + lineNumber + 1);
-				char letter = view.GetChar();
-				Console.SetCursorPosition(0, linesCount + lineNumber + 1);
-				current = words.GetUpdatedWord(word, current, letter); 
+                Console.SetCursorPosition(0, linesCount + 1);
+                Console.WriteLine("Enter a letter:");
+                char letter = view.GetChar();
+                Console.SetCursorPosition(0, linesCount + lineNumber + 2);
+                current = words.GetUpdatedWord(word, current, letter);
                 Console.WriteLine();
                 view.ShowWord(current);
                 if (!words.IsLetter(current, letter))
                     count++;
-				render.Draw(count);
-			}
-
-            
-
-            
-
-
-            current = words.GetUpdatedWord(word, current, 'd');
-            Console.WriteLine(current);
-
-            current = words.GetUpdatedWord(word, current, 'g');
-            Console.WriteLine(current);
-
-
-			current = words.GetUpdatedWord(word, current, 'f');
-			Console.WriteLine(current);
-
-
-			current = words.GetUpdatedWord(word, current, 'm');
-			Console.WriteLine(current);
-
-
-			current = words.GetUpdatedWord(word, current, 'v');
-            Console.WriteLine(current);
-
-			current = words.GetUpdatedWord(word, current, 'w');
-			Console.WriteLine(current);
-
-
-		}
+                render.Draw(count);
+                if (word == current)
+                {
+					Console.SetCursorPosition(0, linesCount + word.Length + count + 3);
+                    Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("!!!)))");
+                    Console.ForegroundColor= ConsoleColor.White;
+                    break;
+                }
+            }
+        }
     }
 }
