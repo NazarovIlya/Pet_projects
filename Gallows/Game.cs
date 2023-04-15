@@ -50,8 +50,9 @@ namespace Gallows
 			while (render.IsOver)
             {
                 ++lineNumber;
-				Console.SetCursorPosition(0, linesCount + 1);
+				Console.SetCursorPosition(0, linesCount + lineNumber + 1);
 				char letter = view.GetChar();
+				Console.SetCursorPosition(0, linesCount + lineNumber + 1);
 				current = words.GetUpdatedWord(word, current, letter); 
                 Console.WriteLine();
                 view.ShowWord(current);
