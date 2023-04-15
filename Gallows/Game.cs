@@ -34,6 +34,10 @@ namespace Gallows
 			//(this.X, this.Y) = Console.GetCursorPosition(); //! TODO
 
 			Render render = new Render(this.Y, this.X, this.linesCount);
+            render.VerticalSymbol = "||";
+            render.HorizontalSymbol = "=";
+            render.RopeSymbol = "|";
+
 			render.Draw(1);
 
             string word = "fddgwgdmv";
