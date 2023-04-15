@@ -16,11 +16,14 @@ namespace Gallows
 		private View view;
 		public string VerticalSymbol { get; set; }
 		public string HorizontalSymbol { get; set; }
+		public bool IsOver { get; set; }
+
 		public Render(int x, int y, int linesCount)
 		{
 			this.x = x;
 			this.y = y;
 			this.lineCount = linesCount;
+			this.IsOver = true;
 			view = new View();
 			Console.WindowHeight = 40;
 		}
@@ -87,7 +90,7 @@ namespace Gallows
 					Console.SetCursorPosition(this.x - 7, this.y++);
 					this.view.WriteSymbolToConsole(this.VerticalSymbol);
 				}
-				if (count >= 6)
+				if (count >= 5)
 				{
 					this.x -= 10;
 					for (int i = 0; i <= 4; i++)
@@ -96,7 +99,7 @@ namespace Gallows
 						this.view.WriteSymbolToConsole(HorizontalSymbol);
 					}
 				}
-                if (count >= 7)
+                if (count >= 6)
                 {
 					Console.SetCursorPosition(this.x - 9, this.y - 2);
 					Console.WriteLine(string.Join("", Enumerable.Repeat(HorizontalSymbol, 3)));
@@ -108,17 +111,17 @@ namespace Gallows
 					Console.SetCursorPosition(this.x - 3, this.y + 1);
 					Console.WriteLine(VerticalSymbol);
 
-
+					Console.SetCursorPosition(0, this.lineCount + 1);
+					GameOver();
                 }
             }
-			Console.SetCursorPosition(0, this.lineCount + 1);
 		}
-		public void GameOver(int count)
+		private void GameOver()
 		{
-			Console.SetCursorPosition(0, this.lineCount + count + 2);
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("GAME OVER!!!");
 			Console.ForegroundColor = ConsoleColor.White;
+			this.IsOver = false;
 		}
 	}
 }

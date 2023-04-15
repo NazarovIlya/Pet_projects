@@ -12,8 +12,19 @@ namespace Gallows
 	internal class View
 	{
 		public void Menu(List<ICommand> commands) { }
-		public void GetChar(string? invite) { }
-		public void ShowWord(string word) { }
+		public char GetChar()
+		{
+			bool flag = true;
+			string letter = string.Empty;
+			while (flag) 
+			{
+				letter = Console.ReadLine();
+                if (!string.IsNullOrEmpty(letter) && letter.Length == 1)
+					flag = false;
+			}
+			return letter[0];
+		}
+		public void ShowWord(string word) => Console.WriteLine(word);
 		public void WriteSymbolToConsole(string symbol) => Console.WriteLine(symbol);
 	}
 }

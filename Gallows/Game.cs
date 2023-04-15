@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,17 +33,37 @@ namespace Gallows
 			Console.Clear();
 
 			//(this.X, this.Y) = Console.GetCursorPosition(); //! TODO
-
+            View view = new View();
 			Render render = new Render(this.Y, this.X, this.linesCount);
             render.VerticalSymbol = "|";
             render.HorizontalSymbol = "=";
 
-			render.Draw(7);
+			//render.Draw(7);
 
-            string word = "fddgwgdmv";
+			string word = words.Word;
+			string current = words.GetEncodingWord(word);
+			
+			view.ShowWord(word);
 
-            string current = words.GetEncodingWord(word);
-            Console.WriteLine(current);
+			int count = 0;
+            int lineNumber = 0;
+			while (render.IsOver)
+            {
+                ++lineNumber;
+				Console.SetCursorPosition(0, linesCount + 1);
+				char letter = view.GetChar();
+				current = words.GetUpdatedWord(word, current, letter); 
+                Console.WriteLine();
+                view.ShowWord(current);
+                if (!words.IsLetter(current, letter))
+                    count++;
+				render.Draw(count);
+			}
+
+            
+
+            
+
 
             current = words.GetUpdatedWord(word, current, 'd');
             Console.WriteLine(current);
@@ -65,8 +86,7 @@ namespace Gallows
 			current = words.GetUpdatedWord(word, current, 'w');
 			Console.WriteLine(current);
 
-			if (!words.IsAnyClosedLetter(current))
-                render.GameOver(7);
+
 		}
     }
 }

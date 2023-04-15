@@ -58,5 +58,14 @@ namespace Gallows
                     return true;
 			return false;
 		}
+        public bool IsLetter(string word, char letter)
+        {
+            for(int i = 0; i < word.Length; i++)
+            {
+                if (word[i] == letter)
+                    return true;
+            }
+            return false;
+        }
     }
 }
