@@ -38,7 +38,7 @@ namespace Gallows
             render.HorizontalSymbol = "=";
             render.RopeSymbol = "|";
 
-			render.Draw(1);
+			render.Draw(4);
 
             string word = "fddgwgdmv";
 

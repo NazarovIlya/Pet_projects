@@ -31,26 +31,36 @@ namespace Gallows
 		}
 		private void DrawGallows(int count)
 		{
-			this.x = 1; this.y = 0;	
-			for (int i = 0; i < this.lineCount; i++)
-			{
-				Console.SetCursorPosition(x, y++);
-				view.WriteSymbolToConsole(VerticalSymbol);
+            if (count >= 1)
+            {
+				this.x = 1; this.y = 0;
+				for (int i = 0; i < this.lineCount; i++)
+				{
+					Console.SetCursorPosition(x, y++);
+					view.WriteSymbolToConsole(VerticalSymbol);
+				}
 			}
+            if (count >= 2)
+            {
+				this.x = 1; this.y = 0;
+				for (int i = 0; i < this.lineCount * 1.5; i++)
+				{
+					Console.SetCursorPosition(++x, y);
+					this.view.WriteSymbolToConsole(HorizontalSymbol);
 
-			this.x = 1; this.y = 0;
-			for (int i = 0; i < this.lineCount * 1.5; i++)
+				}
+			}
+			if(count >= 3)
 			{
-				Console.SetCursorPosition(++x, y);
-				this.view.WriteSymbolToConsole(HorizontalSymbol);
-				
+				this.y += 1;
+				for (int i = 0; i < count - 2; i++)
+				{
+					Console.SetCursorPosition(this.x, this.y++);
+					this.view.WriteSymbolToConsole(this.RopeSymbol);
+				}
 			}
 			
-			for (int i = 0; i < 2; i++)
-			{
-				Console.SetCursorPosition(this.x, 1);
-				this.view.WriteSymbolToConsole(this.RopeSymbol);
-			}
+		
 				
 			Console.SetCursorPosition(0, ++this.lineCount);
 		}
