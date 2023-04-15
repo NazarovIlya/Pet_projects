@@ -12,5 +12,9 @@ namespace Gallows
 		public void Menu(List<ICommand> commands) { }
 		public void GetChar(string? invite) { }
 		public void ShowWord(string word) { }
+		public void WriteSymbolToConsole(string symbol)
+		{
+			Console.WriteLine(symbol);
+		}
 	}
 }
