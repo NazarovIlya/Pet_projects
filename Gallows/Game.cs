@@ -34,11 +34,10 @@ namespace Gallows
 			//(this.X, this.Y) = Console.GetCursorPosition(); //! TODO
 
 			Render render = new Render(this.Y, this.X, this.linesCount);
-            render.VerticalSymbol = "||";
+            render.VerticalSymbol = "|";
             render.HorizontalSymbol = "=";
-            render.RopeSymbol = "|";
 
-			render.Draw(4);
+			render.Draw(7);
 
             string word = "fddgwgdmv";
 
@@ -50,6 +49,24 @@ namespace Gallows
 
             current = words.GetUpdatedWord(word, current, 'g');
             Console.WriteLine(current);
-        }
+
+
+			current = words.GetUpdatedWord(word, current, 'f');
+			Console.WriteLine(current);
+
+
+			current = words.GetUpdatedWord(word, current, 'm');
+			Console.WriteLine(current);
+
+
+			current = words.GetUpdatedWord(word, current, 'v');
+            Console.WriteLine(current);
+
+			current = words.GetUpdatedWord(word, current, 'w');
+			Console.WriteLine(current);
+
+			if (!words.IsAnyClosedLetter(current))
+                render.GameOver(7);
+		}
     }
 }

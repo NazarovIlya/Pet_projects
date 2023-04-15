@@ -51,5 +51,12 @@ namespace Gallows
             }
             return newCurrent;
         }
+        public bool IsAnyClosedLetter(string word)
+        {
+            for (int i = 0; i < word.Length; i++)
+                if (word[i] == symbol)
+                    return true;
+			return false;
+		}
     }
 }

@@ -8,7 +8,7 @@
 
 using Gallows;
 
-Game game = new Game(0, 0, 12);
+Game game = new Game(0, 0, 20);
 
 game.StartGame();
 
