@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Gallows
 {
-	internal class View
+	internal class ConsoleView : IView
 	{
 		public void Menu(List<ICommand> commands) { }
 		public char GetChar()
@@ -25,7 +25,7 @@ namespace Gallows
 			return letter[0];
 		}
 		public void ShowWord(string word) => Console.WriteLine(word);
-		public void WriteSymbolToConsole(string symbol) => Console.WriteLine(symbol);
+		public void WriteSymbol(string symbol) => Console.WriteLine(symbol);
 		public void WriteCongratulations()
 		{
 			Console.ForegroundColor = ConsoleColor.Green;

@@ -13,7 +13,7 @@ namespace Gallows
 		private int x;
 		private int y;
 		private int lineCount;
-		private View view;
+		private ConsoleView view;
 		public string VerticalSymbol { get; set; }
 		public string HorizontalSymbol { get; set; }
 		public bool IsOver { get; set; }
@@ -29,7 +29,7 @@ namespace Gallows
 			this.lineCount = linesCount;
 			Console.WindowHeight = windowHeight;
 			this.IsOver = true;
-			view = new View();
+			view = new ConsoleView();
 		}
 
 		public void Draw(int count)
@@ -45,7 +45,7 @@ namespace Gallows
 				for (int i = 0; i < this.lineCount; i++)
 				{
 					Console.SetCursorPosition(this.x, this.y++);
-					view.WriteSymbolToConsole(string.Join("",  Enumerable.Repeat(VerticalSymbol, 2)));
+					view.WriteSymbol(string.Join("",  Enumerable.Repeat(VerticalSymbol, 2)));
 				}
 			}
             if (count >= 2)
@@ -54,7 +54,7 @@ namespace Gallows
 				for (int i = 0; i < this.lineCount * 1.25; i++)
 				{
 					Console.SetCursorPosition(++x, y);
-					this.view.WriteSymbolToConsole(HorizontalSymbol);
+					this.view.WriteSymbol(HorizontalSymbol);
 
 				}
 			}
@@ -64,14 +64,14 @@ namespace Gallows
 				for (int i = 0; i < 2; i++)
 				{
 					Console.SetCursorPosition(this.x, this.y++);
-					this.view.WriteSymbolToConsole(VerticalSymbol);
+					this.view.WriteSymbol(VerticalSymbol);
 				}
 			}
 			this.x -= temp;
             if (count >= 4)
             {
 				Console.SetCursorPosition(this.x, this.y++);
-				this.view.WriteSymbolToConsole(string.Join("", Enumerable.Repeat(VerticalSymbol, 3)));
+				this.view.WriteSymbol(string.Join("", Enumerable.Repeat(VerticalSymbol, 3)));
             }
 			this.x += temp;
 			if (count >= 5)
@@ -79,20 +79,20 @@ namespace Gallows
 				Console.SetCursorPosition(this.x - 2, this.y);
 				for (int i = 0; i <= 4; i++)
 				{
-					this.view.WriteSymbolToConsole(HorizontalSymbol);
+					this.view.WriteSymbol(HorizontalSymbol);
 					Console.SetCursorPosition(++this.x - 2, this.y);
 				}
 				this.y += 1;
 				for (int i = 0; i < 3; i++)
 				{
 					Console.SetCursorPosition(this.x - 7, this.y++);
-					this.view.WriteSymbolToConsole(this.VerticalSymbol);
+					this.view.WriteSymbol(this.VerticalSymbol);
 				}
 				this.x += 4; this.y -= 3;
 				for (int i = 0; i < 2; i++)
 				{
 					Console.SetCursorPosition(this.x - 7, this.y++);
-					this.view.WriteSymbolToConsole(this.VerticalSymbol);
+					this.view.WriteSymbol(this.VerticalSymbol);
 				}
 				if (count >= 5)
 				{
@@ -100,7 +100,7 @@ namespace Gallows
 					for (int i = 0; i <= 4; i++)
 					{
 						Console.SetCursorPosition(++this.x - 2, this.y);
-						this.view.WriteSymbolToConsole(HorizontalSymbol);
+						this.view.WriteSymbol(HorizontalSymbol);
 					}
 				}
                 if (count >= 6)

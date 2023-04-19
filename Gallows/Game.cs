@@ -24,7 +24,7 @@ namespace Gallows
             Console.Clear();
 
             Words words = new Words("//..//..//..//dict.txt", '*');
-            View view = new View();
+            ConsoleView view = new ConsoleView();
             Render render = new Render(this.Y, this.X, this.linesCount, 40);
             render.VerticalSymbol = "|";
             render.HorizontalSymbol = "=";
