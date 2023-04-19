@@ -23,9 +23,9 @@ namespace Gallows
         {
             Console.Clear();
 
-            Words words = new Words('*');
+            Words words = new Words("//..//..//..//dict.txt", '*');
             View view = new View();
-            Render render = new Render(this.Y, this.X, this.linesCount);
+            Render render = new Render(this.Y, this.X, this.linesCount, 40);
             render.VerticalSymbol = "|";
             render.HorizontalSymbol = "=";
 
@@ -52,9 +52,7 @@ namespace Gallows
                 if (word == current)
                 {
 					Console.SetCursorPosition(0, linesCount + word.Length + count + 3);
-                    Console.ForegroundColor = ConsoleColor.Green;
-					Console.WriteLine("!!!)))");
-                    Console.ForegroundColor= ConsoleColor.White;
+                    view.WriteCongratulations();
                     break;
                 }
             }

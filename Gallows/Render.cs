@@ -18,14 +18,18 @@ namespace Gallows
 		public string HorizontalSymbol { get; set; }
 		public bool IsOver { get; set; }
 
-		public Render(int x, int y, int linesCount)
+		public Render(
+			int x,
+				int y,
+				int linesCount,
+				int windowHeight)
 		{
 			this.x = x;
 			this.y = y;
 			this.lineCount = linesCount;
+			Console.WindowHeight = windowHeight;
 			this.IsOver = true;
 			view = new View();
-			Console.WindowHeight = 40;
 		}
 
 		public void Draw(int count)
@@ -118,9 +122,7 @@ namespace Gallows
 		}
 		private void GameOver()
 		{
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("GAME OVER!!!");
-			Console.ForegroundColor = ConsoleColor.White;
+			view.WriteGameOver();
 			this.IsOver = false;
 		}
 	}

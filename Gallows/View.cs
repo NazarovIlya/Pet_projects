@@ -16,15 +16,27 @@ namespace Gallows
 		{
 			bool flag = true;
 			string letter = string.Empty;
-			while (flag) 
+			while (flag)
 			{
 				letter = Console.ReadLine();
-                if (!string.IsNullOrEmpty(letter) && letter.Length == 1)
+				if (!string.IsNullOrEmpty(letter) && letter.Length == 1)
 					flag = false;
 			}
 			return letter[0];
 		}
 		public void ShowWord(string word) => Console.WriteLine(word);
 		public void WriteSymbolToConsole(string symbol) => Console.WriteLine(symbol);
+		public void WriteCongratulations()
+		{
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine("Our Congratulations! You are the best!!!");
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+		public void WriteGameOver()
+		{
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("GAME OVER!!!");
+			Console.ForegroundColor = ConsoleColor.White;
+		}
 	}
 }

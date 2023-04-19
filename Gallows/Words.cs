@@ -9,26 +9,35 @@ namespace Gallows
     internal class Words
     {
         char symbol;
-        private string word;
         private string[] wordsArray;
 
-        public Words(char symbol)
+        public Words(string pathFile, char symbol)
         {
-            this.symbol = symbol;
-            word = string.Empty;
-            wordsArray = FillWordsArray();
+            this.Symbol = symbol;
+            wordsArray = FillWordsArray(pathFile);
         }
-        public string Word { get => word = GetWord(); private set => word = value; }
-        private string[] FillWordsArray()
+        public string Word { get => GetWord(); }
+		public char Symbol { get => symbol; set => symbol = value; }
+
+		private string[] FillWordsArray(string pathFile)
         {
-            string[] words = new string[]
+            string[] words;
+            string path = Path.GetFullPath(Environment.CurrentDirectory + pathFile);
+			FileInfo fileInfo = new FileInfo(path);
+            Console.WriteLine(path);
+            if (fileInfo.Exists)
+                words = File.ReadAllLines(fileInfo.FullName);
+            else
             {
+                words = new string[]
+                {
                 "word 1",
                 "word 2",
                 "word 3",
                 "word 4",
                 "word 5"
-            };
+                };
+            }
             return words;
         }
         private string GetWord() => wordsArray[Random.Shared.Next(wordsArray.Length)];
@@ -36,7 +45,7 @@ namespace Gallows
         {
             string str = string.Empty;
             for (int i = 0; i < word.Length; i++)
-                str += symbol;
+                str += Symbol;
             return str;
         }
         public string GetUpdatedWord(string word, string currentWord, char c)
@@ -44,20 +53,20 @@ namespace Gallows
             string newCurrent = string.Empty;
             for (int i = 0; i < currentWord.Length; i++)
             {
-                if (word[i] == c && currentWord[i] == symbol)
+                if (word[i] == c && currentWord[i] == Symbol)
                     newCurrent += c;
                 else
                     newCurrent += currentWord[i];
             }
             return newCurrent;
         }
-        public bool IsAnyClosedLetter(string word)
-        {
-            for (int i = 0; i < word.Length; i++)
-                if (word[i] == symbol)
-                    return true;
-			return false;
-		}
+  //      public bool IsAnyClosedLetter(string word)
+  //      {
+  //          for (int i = 0; i < word.Length; i++)
+  //              if (word[i] == Symbol)
+  //                  return true;
+		//	return false;
+		//}
         public bool IsLetter(string word, char letter)
         {
             for(int i = 0; i < word.Length; i++)
