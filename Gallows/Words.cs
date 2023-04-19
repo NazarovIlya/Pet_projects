@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace Gallows
 {
@@ -11,18 +13,18 @@ namespace Gallows
         char symbol;
         private string[] wordsArray;
 
-        public Words(string pathFile, char symbol)
+        public Words(string fileName, char symbol)
         {
             this.Symbol = symbol;
-            wordsArray = FillWordsArray(pathFile);
+            wordsArray = FillWordsArray(fileName);
         }
         public string Word { get => GetWord(); }
 		public char Symbol { get => symbol; set => symbol = value; }
 
-		private string[] FillWordsArray(string pathFile)
+		private string[] FillWordsArray(string fileName)
         {
             string[] words;
-            string path = AppDomain.CurrentDomain.BaseDirectory + pathFile;
+            string path = fileName;
 			FileInfo fileInfo = new FileInfo(path);
             if (fileInfo.Exists)
                 words = File.ReadAllLines(fileInfo.FullName);

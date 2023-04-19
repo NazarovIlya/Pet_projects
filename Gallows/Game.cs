@@ -11,23 +11,39 @@ namespace Gallows
     {
         public int Y { get; set; }
         public int X { get; set; }
-        public int linesCount { get; set; }
-        public Game(int y, int x, int linesCount)
+        public int LinesCount { get; set; }
+        public string FileName { get; set; }
+        public int WindowHeight { get; set; }
+        public char LetterSymbol { get; set; }
+        string VerticalSymbol { get; set; }
+        public string HorizontalSymbol { get; set; }
+        public Game(int y, int x, 
+            int linesCount, 
+            int windowHeight, 
+            string fileName, 
+            char letterSymbol,
+            string verticalSymbol,
+            string horizontalSymbol)
         {
             this.Y = y;
             this.X = x;
-            this.linesCount = linesCount;
+            this.LinesCount = linesCount;
+            this.FileName = fileName;
+            this.WindowHeight = windowHeight;
+            this.LetterSymbol = letterSymbol;
+            this.VerticalSymbol = verticalSymbol;
+            this.HorizontalSymbol = horizontalSymbol;
         }
 
         public void StartGame()
         {
             Console.Clear();
 
-            Words words = new Words("//..//..//..//dict.txt", '*');
+            Words words = new Words(FileName, this.LetterSymbol);
             ConsoleView view = new ConsoleView();
-            Render render = new Render(this.Y, this.X, this.linesCount, 40);
-            render.VerticalSymbol = "|";
-            render.HorizontalSymbol = "=";
+            Render render = new Render(this.Y, this.X, this.LinesCount, this.WindowHeight);
+            render.VerticalSymbol = VerticalSymbol;
+            render.HorizontalSymbol = HorizontalSymbol;
 
             string word = words.Word;
             string current = words.GetEncodingWord(word);
@@ -39,10 +55,10 @@ namespace Gallows
             while (render.IsOver)
             {
                 ++lineNumber;
-                Console.SetCursorPosition(0, linesCount + 1);
+                Console.SetCursorPosition(0, LinesCount + 1);
                 Console.WriteLine("Enter a letter:");
                 char letter = view.GetChar();
-                Console.SetCursorPosition(0, linesCount + lineNumber + 2);
+                Console.SetCursorPosition(0, LinesCount + lineNumber + 2);
                 current = words.GetUpdatedWord(word, current, letter);
                 Console.WriteLine();
                 view.ShowWord(current);
@@ -51,7 +67,7 @@ namespace Gallows
                 render.Draw(count);
                 if (word == current)
                 {
-                    Console.SetCursorPosition(0, linesCount + word.Length + count + 3);
+                    Console.SetCursorPosition(0, LinesCount + word.Length + count + 3);
                     view.WriteCongratulations();
                     break;
                 }

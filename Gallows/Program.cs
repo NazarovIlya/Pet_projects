@@ -6,9 +6,13 @@
  * 4. По завершении игры выводим результат (победа или поражение) и возвращаемся к состоянию #1, 
  * то есть предложению начать новую игру или выйти из приложения.*/
 
+using System.Configuration;
+using System.Collections.Specialized;
 using Gallows;
 
-Game game = new Game(0, 0, 20);
+string? fileName = ConfigurationManager.AppSettings.Get("dict_1");
+
+Game game = new Game(0, 0, 20, 40, fileName, '*', "|", "=");
 
 game.StartGame();
 
