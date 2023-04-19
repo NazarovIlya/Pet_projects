@@ -51,7 +51,7 @@ namespace Gallows
                 render.Draw(count);
                 if (word == current)
                 {
-					Console.SetCursorPosition(0, linesCount + word.Length + count + 3);
+                    Console.SetCursorPosition(0, linesCount + word.Length + count + 3);
                     view.WriteCongratulations();
                     break;
                 }

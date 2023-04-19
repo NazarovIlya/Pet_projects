@@ -22,9 +22,8 @@ namespace Gallows
 		private string[] FillWordsArray(string pathFile)
         {
             string[] words;
-            string path = Path.GetFullPath(Environment.CurrentDirectory + pathFile);
+            string path = AppDomain.CurrentDomain.BaseDirectory + pathFile;
 			FileInfo fileInfo = new FileInfo(path);
-            Console.WriteLine(path);
             if (fileInfo.Exists)
                 words = File.ReadAllLines(fileInfo.FullName);
             else
