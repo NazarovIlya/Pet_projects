@@ -7,12 +7,17 @@
  * то есть предложению начать новую игру или выйти из приложения.*/
 
 using System.Configuration;
-using System.Collections.Specialized;
 using Gallows;
 
-string? fileName = ConfigurationManager.AppSettings.Get("dict_1");
 
-Game game = new Game(0, 0, 20, 40, fileName, '*', "|", "=");
+Game game = new Game(Convert.ToInt32(ConfigurationManager.AppSettings.Get("x")),
+					Convert.ToInt32(ConfigurationManager.AppSettings.Get("y")),
+					Convert.ToInt32(ConfigurationManager.AppSettings.Get("linesCount")),
+					Convert.ToInt32(ConfigurationManager.AppSettings.Get("windowHeight")),
+					ConfigurationManager.AppSettings.Get("dictionary")!, 
+					Convert.ToChar(ConfigurationManager.AppSettings.Get("letterSymbol")!),
+					ConfigurationManager.AppSettings.Get("verticalSymbol")!,
+					ConfigurationManager.AppSettings.Get("horizontalSymbol")!);
 
 game.StartGame();
 
