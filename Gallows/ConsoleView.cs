@@ -26,6 +26,7 @@ namespace Gallows
         }
         public void ShowWord(string word) => Console.WriteLine(word);
         public void WriteSymbol(string symbol) => Console.WriteLine(symbol);
+        public void PromtForInput() => Console.WriteLine("Enter a letter:");
         public void WriteCongratulations()
         {
             Console.ForegroundColor = ConsoleColor.Green;

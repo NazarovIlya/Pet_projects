@@ -40,13 +40,6 @@ namespace Gallows
 			}
 			return newCurrent;
 		}
-  //      public bool IsAnyClosedLetter(string word)
-  //      {
-  //          for (int i = 0; i < word.Length; i++)
-  //              if (word[i] == Symbol)
-  //                  return true;
-		//	return false;
-		//}
 		public bool IsLetter(string word, char letter)
 		{
 			for(int i = 0; i < word.Length; i++)

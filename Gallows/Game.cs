@@ -44,17 +44,15 @@ namespace Gallows
             string word = words.Word;
             string current = words.GetEncodingWord(word);
 
-            view.ShowWord(word);
-
             int count = 0;
             int lineNumber = 0;
-            while (render.IsOver)
+            while (!render.IsOver)
             {
                 ++lineNumber;
-                Console.SetCursorPosition(0, LinesCount + 1);
-                Console.WriteLine("Enter a letter:");
+                Console.SetCursorPosition(0, LinesCount + 3);
+                view.PromtForInput();
                 char letter = view.GetChar();
-                Console.SetCursorPosition(0, LinesCount + lineNumber + 2);
+                Console.SetCursorPosition(0, LinesCount + lineNumber + 4);
                 current = words.GetUpdatedWord(word, current, letter);
                 Console.WriteLine();
                 view.ShowWord(current);
@@ -63,11 +61,13 @@ namespace Gallows
                 render.Draw(count);
                 if (word == current)
                 {
-                    Console.SetCursorPosition(0, LinesCount + word.Length + count + 3);
+                    Console.SetCursorPosition(0, LinesCount + word.Length + count);
                     view.WriteCongratulations();
                     break;
                 }
-            }
+            }			
+            Console.Read();
+            Console.SetCursorPosition(0, LinesCount + word.Length + count);
         }
     }
 }

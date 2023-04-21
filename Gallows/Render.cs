@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal class Render
+    internal class Render
 	{
 		private int x;
 		private int y;
@@ -28,7 +28,7 @@ namespace Gallows
 			this.y = y;
 			this.lineCount = linesCount;
 			Console.WindowHeight = windowHeight;
-			this.IsOver = true;
+			this.IsOver = false;
 			view = new ConsoleView();
 		}
 
@@ -123,7 +123,7 @@ namespace Gallows
 		private void GameOver()
 		{
 			view.WriteGameOver();
-			this.IsOver = false;
+			this.IsOver = true;
 		}
 	}
 }
