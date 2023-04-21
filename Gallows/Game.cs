@@ -33,7 +33,9 @@ namespace Gallows
         {
             Console.Clear();
 
-            Words words = new Words(this.FileName, this.LetterSymbol);
+            IDictionary dictionaryService = new DictionaryService();
+            string[] dictionary = dictionaryService.GetWordsArray(this.FileName);
+            Words words = new Words(dictionary, this.LetterSymbol);
             IView view = new ConsoleView();
             Render render = new Render(this.Y, this.X, this.LinesCount, this.WindowHeight);
             render.VerticalSymbol = VerticalSymbol;

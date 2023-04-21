@@ -8,59 +8,38 @@ using System.Collections.Specialized;
 
 namespace Gallows
 {
-    internal class Words
-    {
-        char symbol;
-        private string[] wordsArray;
+	internal class Words
+	{
+		char symbol;
 
-        public Words(string fileName, char symbol)
-        {
-            this.Symbol = symbol;
-            wordsArray = FillWordsArray(fileName);
-        }
-        public string Word { get => GetWord(); }
+		public Words(string[] wordsArray, char symbol)
+		{
+			this.Symbol = symbol;
+			this.WordsArray = wordsArray;
+		}
+		public string Word { get => GetRandomWord(); }
 		public char Symbol { get => symbol; set => symbol = value; }
-
-		private string[] FillWordsArray(string fileName)
-        {
-            string[] words;
-            string path = fileName;
-			FileInfo fileInfo = new FileInfo(path);
-            if (fileInfo.Exists)
-                words = File.ReadAllLines(fileInfo.FullName);
-            else
-            {
-                words = new string[]
-                {
-                "word 1",
-                "word 2",
-                "word 3",
-                "word 4",
-                "word 5"
-                };
-            }
-            return words;
-        }
-        private string GetWord() => wordsArray[Random.Shared.Next(wordsArray.Length)];
-        public string GetEncodingWord(string word)
-        {
-            string str = string.Empty;
-            for (int i = 0; i < word.Length; i++)
-                str += Symbol;
-            return str;
-        }
-        public string GetUpdatedWord(string word, string currentWord, char c)
-        {
-            string newCurrent = string.Empty;
-            for (int i = 0; i < currentWord.Length; i++)
-            {
-                if (word[i] == c && currentWord[i] == Symbol)
-                    newCurrent += c;
-                else
-                    newCurrent += currentWord[i];
-            }
-            return newCurrent;
-        }
+		public string[] WordsArray { get; private set; }
+		private string GetRandomWord() => WordsArray[Random.Shared.Next(WordsArray.Length)];
+		public string GetEncodingWord(string word)
+		{
+			string str = string.Empty;
+			for (int i = 0; i < word.Length; i++)
+				str += Symbol;
+			return str;
+		}
+		public string GetUpdatedWord(string word, string currentWord, char c)
+		{
+			string newCurrent = string.Empty;
+			for (int i = 0; i < currentWord.Length; i++)
+			{
+				if (word[i] == c && currentWord[i] == Symbol)
+					newCurrent += c;
+				else
+					newCurrent += currentWord[i];
+			}
+			return newCurrent;
+		}
   //      public bool IsAnyClosedLetter(string word)
   //      {
   //          for (int i = 0; i < word.Length; i++)
@@ -68,14 +47,14 @@ namespace Gallows
   //                  return true;
 		//	return false;
 		//}
-        public bool IsLetter(string word, char letter)
-        {
-            for(int i = 0; i < word.Length; i++)
-            {
-                if (word[i] == letter)
-                    return true;
-            }
-            return false;
-        }
-    }
+		public bool IsLetter(string word, char letter)
+		{
+			for(int i = 0; i < word.Length; i++)
+			{
+				if (word[i] == letter)
+					return true;
+			}
+			return false;
+		}
+	}
 }
