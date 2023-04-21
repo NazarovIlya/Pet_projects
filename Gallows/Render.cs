@@ -19,7 +19,7 @@ namespace Gallows
 		public bool IsOver { get; set; }
 
 		public Render(
-			int x,
+				int x,
 				int y,
 				int linesCount,
 				int windowHeight)

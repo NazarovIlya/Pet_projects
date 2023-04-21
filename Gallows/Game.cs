@@ -17,22 +17,16 @@ namespace Gallows
         public char LetterSymbol { get; set; }
         string VerticalSymbol { get; set; }
         public string HorizontalSymbol { get; set; }
-        public Game(int y, int x, 
-            int linesCount, 
-            int windowHeight, 
-            string fileName, 
-            char letterSymbol,
-            string verticalSymbol,
-            string horizontalSymbol)
+        public Game(IConfigDTO configDTO)
         {
-            this.Y = y;
-            this.X = x;
-            this.LinesCount = linesCount;
-            this.FileName = fileName;
-            this.WindowHeight = windowHeight;
-            this.LetterSymbol = letterSymbol;
-            this.VerticalSymbol = verticalSymbol;
-            this.HorizontalSymbol = horizontalSymbol;
+            this.Y = configDTO.Y;
+            this.X = configDTO.X;
+            this.LinesCount = configDTO.LinesCount;
+            this.FileName = configDTO.FileName;
+            this.WindowHeight = configDTO.WindowHeight;
+            this.LetterSymbol = configDTO.LetterSymbol;
+            this.VerticalSymbol = configDTO.VerticalSymbol;
+            this.HorizontalSymbol = configDTO.HorizontalSymbol;
         }
 
         public void StartGame()
