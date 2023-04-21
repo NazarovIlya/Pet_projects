@@ -6,7 +6,7 @@
  * 4. По завершении игры выводим результат (победа или поражение) и возвращаемся к состоянию #1, 
  * то есть предложению начать новую игру или выйти из приложения.*/
 
-using System.Configuration;
+
 using Gallows;
 
 IConfigDTO configDTO = new AppConfigDTO();
