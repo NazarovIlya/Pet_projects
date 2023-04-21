@@ -9,15 +9,9 @@
 using System.Configuration;
 using Gallows;
 
+IConfigDTO configDTO = new AppConfigDTO();
 
-Game game = new Game(Convert.ToInt32(ConfigurationManager.AppSettings.Get("x")),
-					Convert.ToInt32(ConfigurationManager.AppSettings.Get("y")),
-					Convert.ToInt32(ConfigurationManager.AppSettings.Get("linesCount")),
-					Convert.ToInt32(ConfigurationManager.AppSettings.Get("windowHeight")),
-					ConfigurationManager.AppSettings.Get("dictionary")!, 
-					Convert.ToChar(ConfigurationManager.AppSettings.Get("letterSymbol")!),
-					ConfigurationManager.AppSettings.Get("verticalSymbol")!,
-					ConfigurationManager.AppSettings.Get("horizontalSymbol")!);
+Game game = new Game(configDTO);
 
 game.StartGame();
 
