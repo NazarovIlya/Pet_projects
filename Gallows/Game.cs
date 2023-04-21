@@ -39,8 +39,8 @@ namespace Gallows
         {
             Console.Clear();
 
-            Words words = new Words(FileName, this.LetterSymbol);
-            ConsoleView view = new ConsoleView();
+            Words words = new Words(this.FileName, this.LetterSymbol);
+            IView view = new ConsoleView();
             Render render = new Render(this.Y, this.X, this.LinesCount, this.WindowHeight);
             render.VerticalSymbol = VerticalSymbol;
             render.HorizontalSymbol = HorizontalSymbol;
