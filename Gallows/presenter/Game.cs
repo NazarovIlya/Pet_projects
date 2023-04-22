@@ -1,6 +1,8 @@
 ﻿using Gallows.view;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
@@ -8,17 +10,22 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-    internal class Game
+	internal class Game
     {
-        public int Y { get; set; }
-        public int X { get; set; }
-        public int LinesCount { get; set; }
-        public string FileName { get; set; }
-        public int WindowHeight { get; set; }
-        public char LetterSymbol { get; set; }
-        string VerticalSymbol { get; set; }
-        public string HorizontalSymbol { get; set; }
-        public Game(IConfigDTO configDTO)
+		IDictionary dictionaryService;
+		string[] dictionary;
+		Words words;
+		IView view;
+		IRender render;
+		public int Y { get; private set; }
+        public int X { get; private set; }
+        public int LinesCount { get; private set; }
+        public string FileName { get; private set; }
+        public int WindowHeight { get; private set; }
+        public char LetterSymbol { get; private set; }
+        public string VerticalSymbol { get; private set; }
+        public string HorizontalSymbol { get; private set; }
+        public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view)
         {
             this.Y = configDTO.Y;
             this.X = configDTO.X;
@@ -28,19 +35,20 @@ namespace Gallows
             this.LetterSymbol = configDTO.LetterSymbol;
             this.VerticalSymbol = configDTO.VerticalSymbol;
             this.HorizontalSymbol = configDTO.HorizontalSymbol;
-        }
+
+            this.dictionaryService = dictionaryService;
+			this.dictionary = dictionaryService.GetWordsArray(this.FileName);
+			this.words = new Words(dictionary, this.LetterSymbol);
+            this.view = view;
+			this.render = new ConsoleRender(this.Y, this.X, this.LinesCount, this.WindowHeight);
+		}
 
         public void StartGame()
         {
             Console.Clear();
 
-            IDictionary dictionaryService = new DictionaryService();
-            string[] dictionary = dictionaryService.GetWordsArray(this.FileName);
-            Words words = new Words(dictionary, this.LetterSymbol);
-            IView view = new ConsoleView();
-            IRender render = new ConsoleRender(this.Y, this.X, this.LinesCount, this.WindowHeight);
-            render.VerticalSymbol = VerticalSymbol;
-            render.HorizontalSymbol = HorizontalSymbol;
+            render.VerticalSymbol = this.VerticalSymbol;
+            render.HorizontalSymbol = this.HorizontalSymbol;
 
             string word = words.Word;
             string current = words.GetEncodingWord(word);
