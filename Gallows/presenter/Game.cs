@@ -52,7 +52,7 @@ namespace Gallows
                 Console.SetCursorPosition(0, LinesCount + 3);
                 view.PromtForInput();
                 char letter = view.GetChar();
-                Console.SetCursorPosition(0, LinesCount + lineNumber + 4);
+                Console.SetCursorPosition(0, LinesCount + lineNumber + 3);
                 current = words.GetUpdatedWord(word, current, letter);
                 Console.WriteLine();
                 view.ShowWord(current);
@@ -61,7 +61,7 @@ namespace Gallows
                 render.Draw(count);
                 if (word == current)
                 {
-                    Console.SetCursorPosition(0, LinesCount + word.Length + count);
+                    Console.SetCursorPosition(0, LinesCount + 1);
                     view.WriteCongratulations();
                     break;
                 }
