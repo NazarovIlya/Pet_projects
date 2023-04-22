@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gallows.view;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace Gallows
             string[] dictionary = dictionaryService.GetWordsArray(this.FileName);
             Words words = new Words(dictionary, this.LetterSymbol);
             IView view = new ConsoleView();
-            Render render = new Render(this.Y, this.X, this.LinesCount, this.WindowHeight);
+            IRender render = new ConsoleRender(this.Y, this.X, this.LinesCount, this.WindowHeight);
             render.VerticalSymbol = VerticalSymbol;
             render.HorizontalSymbol = HorizontalSymbol;
 

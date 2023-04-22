@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gallows.view;
+using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal class Render
+	internal class ConsoleRender : IRender
 	{
 		private int x;
 		private int y;
@@ -18,7 +19,7 @@ namespace Gallows
 		public string? HorizontalSymbol { get; set; }
 		public bool IsOver { get; set; }
 
-		public Render(
+		public ConsoleRender(
 				int x,
 				int y,
 				int linesCount,
