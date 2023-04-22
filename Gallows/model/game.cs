@@ -26,7 +26,7 @@ namespace Gallows
 		internal IView View { get; private set; }
 		internal IRender Render { get; private set; }
 
-		public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view)
+		public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view, IRender render)
 		{
 			this.Y = configDTO.Y;
 			this.X = configDTO.X;
@@ -41,7 +41,7 @@ namespace Gallows
 			this.Dictionary = dictionaryService.GetWordsArray(this.FileName);
 			this.Words = new Words(this.Dictionary, this.LetterSymbol);
 			this.View = view;
-			this.Render = new ConsoleRender(this.Y, this.X, this.LinesCount, this.WindowHeight);
+			this.Render = render;
 		}
 
 		public void StartGame()

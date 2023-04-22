@@ -12,7 +12,14 @@ namespace Gallows.model
 		{
 			IConfigDTO configDTO = new AppConfigDTO();
 
-			Game game = new Game(configDTO, new DictionaryService(), new ConsoleView());
+			Game game = new Game(configDTO, 
+				new DictionaryService(), 
+				new ConsoleView(), 
+				new ConsoleRender(
+					configDTO.X, 
+					configDTO.Y, 					
+					configDTO.LinesCount, 
+					configDTO.WindowHeight));
 
 			game.StartGame();
 		}
