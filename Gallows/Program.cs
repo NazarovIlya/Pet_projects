@@ -8,10 +8,8 @@
 
 
 using Gallows;
+using Gallows.model;
 
-IConfigDTO configDTO = new AppConfigDTO();
-
-Game game = new Game(configDTO);
-
-game.StartGame();
+Presenter presenter = new Presenter();
+presenter.StartGame();
 
