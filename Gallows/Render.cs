@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-    internal class Render
+	internal class Render
 	{
 		private int x;
 		private int y;
 		private int lineCount;
 		private ConsoleView view;
-		public string VerticalSymbol { get; set; }
-		public string HorizontalSymbol { get; set; }
+		public string? VerticalSymbol { get; set; }
+		public string? HorizontalSymbol { get; set; }
 		public bool IsOver { get; set; }
 
 		public Render(
@@ -27,7 +27,8 @@ namespace Gallows
 			this.x = x;
 			this.y = y;
 			this.lineCount = linesCount;
-			Console.WindowHeight = windowHeight;
+			if(OperatingSystem.IsWindows())
+				Console.WindowHeight = windowHeight;
 			this.IsOver = false;
 			view = new ConsoleView();
 		}
@@ -39,8 +40,8 @@ namespace Gallows
 		}
 		private void DrawGallows(int count)
 		{
-            if (count >= 1)
-            {
+			if (count >= 1)
+			{
 				this.x = 1; this.y = 0;
 				for (int i = 0; i < this.lineCount; i++)
 				{
@@ -48,8 +49,8 @@ namespace Gallows
 					view.WriteSymbol(string.Join("",  Enumerable.Repeat(VerticalSymbol, 2)));
 				}
 			}
-            if (count >= 2)
-            {
+			if (count >= 2)
+			{
 				this.x = 1; this.y = 0;
 				for (int i = 0; i < this.lineCount * 1.25; i++)
 				{
@@ -68,11 +69,11 @@ namespace Gallows
 				}
 			}
 			this.x -= temp;
-            if (count >= 4)
-            {
+			if (count >= 4)
+			{
 				Console.SetCursorPosition(this.x, this.y++);
 				this.view.WriteSymbol(string.Join("", Enumerable.Repeat(VerticalSymbol, 3)));
-            }
+			}
 			this.x += temp;
 			if (count >= 5)
 			{
@@ -103,22 +104,22 @@ namespace Gallows
 						this.view.WriteSymbol(HorizontalSymbol);
 					}
 				}
-                if (count >= 6)
-                {
+				if (count >= 6)
+				{
 					Console.SetCursorPosition(this.x - 9, this.y - 2);
 					Console.WriteLine(string.Join("", Enumerable.Repeat(HorizontalSymbol, 3)));
 					Console.SetCursorPosition(this.x - 1, this.y - 2);
 					Console.WriteLine(string.Join("", Enumerable.Repeat(HorizontalSymbol, 3)));
 
 					Console.SetCursorPosition(this.x - 5, this.y + 1);
-                    Console.WriteLine(VerticalSymbol);
+					Console.WriteLine(VerticalSymbol);
 					Console.SetCursorPosition(this.x - 3, this.y + 1);
 					Console.WriteLine(VerticalSymbol);
 
 					Console.SetCursorPosition(0, this.lineCount + 1);
 					GameOver();
-                }
-            }
+				}
+			}
 		}
 		private void GameOver()
 		{
