@@ -14,6 +14,8 @@ namespace Gallows
 		public int LinesCount { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("linesCount")); }
 		public string FileName { get => ConfigurationManager.AppSettings.Get("dictionary"); }
 		public int WindowHeight { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("windowHeight")); }
+		public int WordLength { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("wordLength")); }
+		public int MinWordsCount { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("minWordsCount")); }
 		public char LetterSymbol { get => Convert.ToChar(ConfigurationManager.AppSettings.Get("letterSymbol")); }
 		public string VerticalSymbol { get => ConfigurationManager.AppSettings.Get("verticalSymbol"); }
 		public string HorizontalSymbol { get => ConfigurationManager.AppSettings.Get("horizontalSymbol"); }

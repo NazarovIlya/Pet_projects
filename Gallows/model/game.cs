@@ -21,12 +21,15 @@ namespace Gallows
 		public string VerticalSymbol { get; private set; }
 		public string HorizontalSymbol { get; private set; }
 		public string[] Dictionary { get; private set; }
+		public int WordLength { get; private set; }
+		public int MinWordsCount { get; private set; }
 		internal IDictionary DictionaryService {get; private set; }
 		internal Words Words { get; private set; }
 		internal IView View { get; private set; }
 		internal IRender Render { get; private set; }
 
-		public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view, IRender render)
+		public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view, IRender render, 
+					int wordLength, int minWordsCount)
 		{
 			this.Y = configDTO.Y;
 			this.X = configDTO.X;
@@ -36,9 +39,11 @@ namespace Gallows
 			this.LetterSymbol = configDTO.LetterSymbol;
 			this.VerticalSymbol = configDTO.VerticalSymbol;
 			this.HorizontalSymbol = configDTO.HorizontalSymbol;
+			this.WordLength = wordLength;
+			this.MinWordsCount = minWordsCount;
 
 			this.DictionaryService = dictionaryService;
-			this.Dictionary = dictionaryService.GetWordsArray(this.FileName);
+			this.Dictionary = dictionaryService.GetWordsArray(this.FileName, wordLength, minWordsCount);
 			this.Words = new Words(this.Dictionary, this.LetterSymbol);
 			this.View = view;
 			this.Render = render;

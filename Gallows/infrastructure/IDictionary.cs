@@ -8,6 +8,6 @@ namespace Gallows
 {
 	internal interface IDictionary
 	{
-		public string[] GetWordsArray(string fileName);
+		public string[] GetWordsArray(string fileName, int wordLength, int minWordsCount);
 	}
 }
