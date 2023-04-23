@@ -33,7 +33,7 @@ namespace Gallows
 			string newCurrent = string.Empty;
 			for (int i = 0; i < currentWord.Length; i++)
 			{
-				if (word[i] == c && currentWord[i] == Symbol)
+				if (word.ToLower()[i] == char.ToLower(c) && currentWord[i] == Symbol)
 					newCurrent += c;
 				else
 					newCurrent += currentWord[i];
@@ -44,7 +44,7 @@ namespace Gallows
 		{
 			for(int i = 0; i < word.Length; i++)
 			{
-				if (word[i] == letter)
+				if (word.ToLower()[i] == char.ToLower(letter))
 					return true;
 			}
 			return false;
