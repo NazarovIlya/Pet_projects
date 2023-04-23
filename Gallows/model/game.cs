@@ -75,8 +75,9 @@ namespace Gallows
 					View.WriteCongratulations();
 					break;
 				}
-			}			
+			}		
 			Console.SetCursorPosition(0, LinesCount + word.Length + count);
+			Render.IsOver = false;
 		}
 	}
 }
