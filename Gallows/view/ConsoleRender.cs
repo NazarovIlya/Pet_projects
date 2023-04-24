@@ -96,14 +96,11 @@ namespace Gallows
 					Console.SetCursorPosition(this.x - 7, this.y++);
 					this.view.WriteSymbol(this.VerticalSymbol);
 				}
-				if (count >= 5)
+				this.x -= 10;
+				for (int i = 0; i <= 4; i++)
 				{
-					this.x -= 10;
-					for (int i = 0; i <= 4; i++)
-					{
-						Console.SetCursorPosition(++this.x - 2, this.y);
-						this.view.WriteSymbol(HorizontalSymbol);
-					}
+					Console.SetCursorPosition(++this.x - 2, this.y);
+					this.view.WriteSymbol(HorizontalSymbol);
 				}
 				if (count >= 6)
 				{
