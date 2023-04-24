@@ -23,16 +23,16 @@ namespace Gallows.model
 			IView view = new ConsoleView();
 			
 		IRender render = new ConsoleRender(configDTO.X,
-			configDTO.Y,
-			configDTO.LinesCount,
-			configDTO.WindowHeight);
+										configDTO.Y,
+										configDTO.LinesCount,
+										configDTO.WindowHeight);
 
 			Game game = new Game(configDTO,
-				dictionary,
-				view,
-				render,
-				configDTO.WordLength,
-				configDTO.MinWordsCount);
+								dictionary,
+								view,
+								render,
+								configDTO.WordLength,
+								configDTO.MinWordsCount);
 
 			while (true)
 			{
