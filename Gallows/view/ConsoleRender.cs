@@ -31,7 +31,7 @@ namespace Gallows
 			this.lineCount = linesCount;
 			if(OperatingSystem.IsWindows())
 				Console.WindowHeight = windowHeight;
-			this.IsOver = false;
+			Game.IsOver  = false;
 			view = new ConsoleView();
 		}
 
@@ -122,7 +122,7 @@ namespace Gallows
 		private void GameOver()
 		{
 			view.WriteGameOver();
-			this.IsOver = true;
+			Game.IsOver = true;
 		}
 	}
 }

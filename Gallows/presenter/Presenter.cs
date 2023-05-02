@@ -34,7 +34,7 @@ namespace Gallows.model
 				configDTO.WordLength,
 				configDTO.MinWordsCount);
 
-			while (true)
+			while (!Game.IsOver)
 			{
 				int index = view.Menu(commands);
 				commands[index].Execute(game);

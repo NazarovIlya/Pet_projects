@@ -10,6 +10,6 @@ namespace Gallows.infrastructure.Commands
 	{
 		public string Discription() => "Select and push to quite game.";
 
-		public void Execute(Game game) => Environment.Exit(0);
+		public void Execute(Game game) => Game.IsOver = true;
 	}
 }

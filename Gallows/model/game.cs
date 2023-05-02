@@ -12,7 +12,6 @@ namespace Gallows
 {
 	internal class Game
 	{
-		public int Y { get; private set; }
 		public int X { get; private set; }
 		public int LinesCount { get; private set; }
 		public string FileName { get; private set; }
@@ -27,11 +26,11 @@ namespace Gallows
 		internal Words Words { get; private set; }
 		internal IView View { get; private set; }
 		internal IRender Render { get; private set; }
+		internal static bool IsOver { get; set; }
 
 		public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view, IRender render, 
 					int wordLength, int minWordsCount)
 		{
-			this.Y = configDTO.Y;
 			this.X = configDTO.X;
 			this.LinesCount = configDTO.LinesCount;
 			this.FileName = configDTO.FileName;
@@ -61,13 +60,13 @@ namespace Gallows
 
 			int count = 0;
 			int lineNumber = 0;
-			while (!Render.IsOver)
+			while (!IsOver)
 			{
 				++lineNumber;
-				Console.SetCursorPosition(0, LinesCount + 3);
+				Console.SetCursorPosition(this.X, LinesCount + 3);
 				View.PromtForInput();
 				char letter = View.GetChar();
-				Console.SetCursorPosition(0, LinesCount + lineNumber + 3);
+				Console.SetCursorPosition(this.X, LinesCount + lineNumber + 3);
 				current = Words.GetUpdatedWord(word, current, letter);
 				Console.WriteLine();
 				View.ShowWord(current);
@@ -82,7 +81,7 @@ namespace Gallows
 				}
 			}		
 			Console.SetCursorPosition(0, LinesCount + word.Length + count);
-			Render.IsOver = false;
+			IsOver = false;
 		}
 	}
 }
