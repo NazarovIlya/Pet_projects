@@ -28,7 +28,7 @@ namespace Gallows
 		internal IRender Render { get; private set; }
 		internal static bool IsOver { get; set; }
 
-		public Game(IConfigDTO configDTO, IDictionary dictionaryService, IView view, IRender render, 
+		public Game(IConfig configDTO, IDictionary dictionaryService, IView view, IRender render, 
 					int wordLength, int minWordsCount)
 		{
 			this.X = configDTO.X;

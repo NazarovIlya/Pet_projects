@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal class AppConfigDTO : IConfigDTO
+	internal class AppConfig : IConfig
 	{
+		private static AppConfig? instance;
+		public static AppConfig Instance
+			=> instance ??= new AppConfig();
 		public int X { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("x")); }
 		public int Y { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("y")); }
 		public int LinesCount { get => Convert.ToInt32(ConfigurationManager.AppSettings.Get("linesCount")); }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal interface IConfigDTO
+	internal interface IConfig
 	{
 		public int X { get; }
 		public int Y { get; }

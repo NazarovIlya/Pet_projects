@@ -14,30 +14,31 @@ namespace Gallows.model
 	{
 		public void StartGame()
 		{
+			IConfig config = AppConfig.Instance;
+			IView view = new ConsoleView();
+
 			List<ICommand> commands = new List<ICommand>();
 			commands.Add(new QuiteCommand());
-			commands.Add(new StartGameCommand());
+			commands.Add(new StartGameCommand(config, view));
 
-			IConfigDTO configDTO = new AppConfigDTO();
-			IDictionary dictionary = new DictionaryService();
-			IView view = new ConsoleView();
-			
-		IRender render = new ConsoleRender(configDTO.X,
-				configDTO.Y,
-				configDTO.LinesCount,
-				configDTO.WindowHeight);
+			//IDictionary dictionary = new DictionaryService();
+						
+			//IRender render = new ConsoleRender(config.X,
+			//	config.Y,
+			//	config.LinesCount,
+			//	config.WindowHeight);
 
-			Game game = new Game(configDTO,
-				dictionary,
-				view,
-				render,
-				configDTO.WordLength,
-				configDTO.MinWordsCount);
+			//Game game = new Game(config,
+			//	dictionary,
+			//	view,
+			//	render,
+			//	config.WordLength,
+			//	config.MinWordsCount);
 
 			while (!Game.IsOver)
 			{
 				int index = view.Menu(commands);
-				commands[index].Execute(game);
+				commands[index].Execute();
 			}
 		}
 	}

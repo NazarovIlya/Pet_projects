@@ -8,7 +8,7 @@ namespace Gallows.infrastructure.Commands
 {
 	internal interface ICommand
 	{
-		void Execute(Game game);
+		void Execute();
 		string Discription();
 	}
 }
