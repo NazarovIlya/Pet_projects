@@ -10,36 +10,36 @@ using ICommand = Gallows.infrastructure.Commands.ICommand;
 
 namespace Gallows.model
 {
-	internal class Presenter
-	{
-		public void StartGame()
-		{
-			IConfig config = AppConfig.Instance;
-			IView view = new ConsoleView();
+  internal class Presenter
+  {
+    public void StartGame()
+    {
+      IConfig config = AppConfig.Instance;
+      IView view = new ConsoleView();
 
-			List<ICommand> commands = new List<ICommand>();
-			commands.Add(new QuiteCommand());
-			commands.Add(new StartGameCommand(config, view));
+      List<ICommand> commands = new List<ICommand>();
+      commands.Add(new QuiteCommand());
+      commands.Add(new StartGameCommand(config, view));
 
-			//IDictionary dictionary = new DictionaryService();
-						
-			//IRender render = new ConsoleRender(config.X,
-			//	config.Y,
-			//	config.LinesCount,
-			//	config.WindowHeight);
+      //IDictionary dictionary = new DictionaryService();
+            
+      //IRender render = new ConsoleRender(config.X,
+      //	config.Y,
+      //	config.LinesCount,
+      //	config.WindowHeight);
 
-			//Game game = new Game(config,
-			//	dictionary,
-			//	view,
-			//	render,
-			//	config.WordLength,
-			//	config.MinWordsCount);
+      //Game game = new Game(config,
+      //	dictionary,
+      //	view,
+      //	render,
+      //	config.WordLength,
+      //	config.MinWordsCount);
 
-			while (!Game.IsOver)
-			{
-				int index = view.Menu(commands);
-				commands[index].Execute();
-			}
-		}
-	}
+      while (!Game.IsOver)
+      {
+        int index = view.Menu(commands);
+        commands[index].Execute();
+      }
+    }
+  }
 }

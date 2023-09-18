@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gallows.infrastructure.Commands
 {
-	internal interface ICommand
-	{
-		void Execute();
-		string Discription();
-	}
+  internal interface ICommand
+  {
+    void Execute();
+    string Discription();
+  }
 }

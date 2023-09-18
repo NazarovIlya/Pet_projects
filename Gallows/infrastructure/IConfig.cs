@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal interface IConfig
-	{
-		public int X { get; }
-		public int Y { get; }
-		public int LinesCount { get; }
-		public string FileName { get; }
-		public int WindowHeight { get; }
-		public int WordLength { get; }
-		public int MinWordsCount { get; }
-		public char LetterSymbol { get; }
-		string VerticalSymbol { get; }
-		public string HorizontalSymbol { get; }
-	}
+  internal interface IConfig
+  {
+    public int X { get; }
+    public int Y { get; }
+    public int LinesCount { get; }
+    public string FileName { get; }
+    public int WindowHeight { get; }
+    public int WordLength { get; }
+    public int MinWordsCount { get; }
+    public char LetterSymbol { get; }
+    string VerticalSymbol { get; }
+    public string HorizontalSymbol { get; }
+  }
 }

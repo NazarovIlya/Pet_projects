@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Gallows.view
 {
-	internal interface IRender
-	{
-		public string? VerticalSymbol { get; set; }
-		public string? HorizontalSymbol { get; set; }
-		public bool IsOver { get; set; }
-		public void Draw(int count);
-	}
+  internal interface IRender
+  {
+    public string? VerticalSymbol { get; set; }
+    public string? HorizontalSymbol { get; set; }
+    public bool IsOver { get; set; }
+    public void Draw(int count);
+  }
 }
