@@ -29,4 +29,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Programming\MyGBProjects\Pet_projects\Gallows\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Programming\MyGBProjects\Pet_projects\Gallows\.editorconfig" />
+  </ItemGroup>
+
 </Project>
