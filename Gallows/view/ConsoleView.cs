@@ -19,19 +19,21 @@ namespace Gallows
       {
         Console.WriteLine($"{i} --> {commands[i].Discription()}");
       }
-      return MenuIndex(commands);
+      return MenuIndex();
     }
-    private int MenuIndex(List<ICommand> commands)
+    private int MenuIndex()
     {
       bool flag = true;
       int index = 0;
-      string? input = string.Empty;
+      string input = string.Empty;
       Regex regex = new Regex($"^[0-1]+$", RegexOptions.Compiled);
       while (flag)
       {
         Console.Write("Select a team number from the list:\t\n");
-        input = Console.ReadLine();
-        if (input.All(char.IsDigit) && regex.IsMatch(input))
+        input = Console.ReadLine()!;
+        if (!string.IsNullOrEmpty(input) 
+          && input.All(char.IsDigit) 
+          && regex.IsMatch(input))
         {
           index = int.Parse(input);
           flag = false;
