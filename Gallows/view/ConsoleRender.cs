@@ -1,4 +1,5 @@
-﻿using Gallows.view;
+﻿using Gallows.infrastructure;
+using Gallows.view;
 using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
@@ -18,20 +19,21 @@ namespace Gallows
     private ConsoleView view;
     public string? VerticalSymbol { get; set; }
     public string? HorizontalSymbol { get; set; }
-    public bool IsOver { get; set; }
+    public State State { get; set; }
 
     public ConsoleRender(
-        int x,
-        int y,
-        int linesCount,
-        int windowHeight)
+      State state,
+      int x,
+      int y,
+      int linesCount,
+      int windowHeight)
     {
       this.x = x;
       this.y = y;
       this.lineCount = linesCount;
       if(OperatingSystem.IsWindows())
         Console.WindowHeight = windowHeight;
-      Game.IsOver  = false;
+      this.State = state;
       view = new ConsoleView();
     }
 
@@ -122,7 +124,7 @@ namespace Gallows
     private void GameOver()
     {
       view.WriteGameOver();
-      Game.IsOver = true;
+      State.IsRunning = false;
     }
   }
 }

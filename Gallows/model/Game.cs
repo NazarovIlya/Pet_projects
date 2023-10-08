@@ -1,4 +1,5 @@
-﻿using Gallows.view;
+﻿using Gallows.infrastructure;
+using Gallows.view;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,11 +27,12 @@ namespace Gallows
     internal Words Words { get; private set; }
     internal IView View { get; private set; }
     internal IRender Render { get; private set; }
-    internal static bool IsOver { get; set; }
+    internal State State { get; set; }
 
-    public Game(IConfig configDTO, IDictionary dictionaryService, IView view, IRender render, 
+    public Game(State state, IConfig configDTO, IDictionary dictionaryService, IView view, IRender render, 
           int wordLength, int minWordsCount)
     {
+      this.State = state;
       this.X = configDTO.X;
       this.LinesCount = configDTO.LinesCount;
       this.FileName = configDTO.FileName;
@@ -60,7 +62,7 @@ namespace Gallows
 
       int count = 0;
       int lineNumber = 0;
-      while (!IsOver)
+      while (State.IsRunning)
       {
         ++lineNumber;
         Console.SetCursorPosition(this.X, LinesCount + 3);
@@ -81,7 +83,7 @@ namespace Gallows
         }
       }		
       Console.SetCursorPosition(0, LinesCount + word.Length + count);
-      IsOver = false;
+      State.IsRunning = true;
     }
   }
 }

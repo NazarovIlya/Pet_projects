@@ -8,8 +8,13 @@ namespace Gallows.infrastructure.Commands
 {
   internal class QuiteCommand : ICommand
   {
+    State state;
+    public QuiteCommand(State state)
+    {
+      this.state = state;
+    }
     public string Discription() => "Select and push to quite game.";
 
-    public void Execute() => Game.IsOver = true;
+    public void Execute() => state.IsRunning = false;
   }
 }

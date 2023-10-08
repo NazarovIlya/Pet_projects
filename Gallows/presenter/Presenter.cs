@@ -1,4 +1,5 @@
-﻿using Gallows.infrastructure.Commands;
+﻿using Gallows.infrastructure;
+using Gallows.infrastructure.Commands;
 using Gallows.view;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,14 @@ namespace Gallows.model
     {
       IConfig config = AppConfig.Instance;
       IView view = new ConsoleView();
+      State state = new();
 
       List<ICommand> commands = new List<ICommand>();
-      commands.Add(new QuiteCommand());
-      commands.Add(new StartGameCommand(config, view));
+      commands.Add(new QuiteCommand(state));
+      commands.Add(new StartGameCommand(config, view, state));
 
       //IDictionary dictionary = new DictionaryService();
-            
+
       //IRender render = new ConsoleRender(config.X,
       //	config.Y,
       //	config.LinesCount,
@@ -35,7 +37,7 @@ namespace Gallows.model
       //	config.WordLength,
       //	config.MinWordsCount);
 
-      while (!Game.IsOver)
+      while (state.IsRunning)
       {
         int index = view.Menu(commands);
         commands[index].Execute();

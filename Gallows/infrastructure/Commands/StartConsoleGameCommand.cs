@@ -14,16 +14,21 @@ namespace Gallows.infrastructure.Commands
     private IView view;
     private IRender render;
     private Game game;
-    public StartGameCommand(IConfig config, IView view)
+    State state;
+    public StartGameCommand(IConfig config, IView view, State state)
     {
       this.dictionary = new DictionaryService();
       this.view = view;
       this.config = config;
-      this.render = new ConsoleRender(config.X, 
+      this.state = state;
+      this.render = new ConsoleRender(this.state, 
+        config.X, 
         config.Y,
         config.LinesCount,
         config.WindowHeight);
-      this.game = new Game(config,
+      
+      this.game = new Game(this.state,
+        this.config,
         this.dictionary,
         this.view,
         this.render,
@@ -32,6 +37,10 @@ namespace Gallows.infrastructure.Commands
     }
     public string Discription() => "Select and push to start game.";
 
-    public void Execute() => game.StartGame();
+    public void Execute()
+    {
+      this.state.IsRunning = true;
+      game.StartGame();
+    }
   }
 }

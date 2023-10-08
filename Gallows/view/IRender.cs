@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gallows.infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Configuration;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Gallows.view
   {
     public string? VerticalSymbol { get; set; }
     public string? HorizontalSymbol { get; set; }
-    public bool IsOver { get; set; }
+    public State State { get; set; }
     public void Draw(int count);
   }
 }
