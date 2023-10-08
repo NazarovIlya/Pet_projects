@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Gallows
 {
-	internal interface IDictionary
-	{
-		public string[] GetWordsArray(string fileName, int wordLength, int minWordsCount);
-	}
+  internal interface IDictionary
+  {
+    public string[] GetWordsArray(string fileName, int wordLength, int minWordsCount);
+  }
 }

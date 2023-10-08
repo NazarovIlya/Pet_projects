@@ -1,4 +1,5 @@
-﻿using Gallows.infrastructure.Commands;
+﻿using Gallows.infrastructure;
+using Gallows.infrastructure.Commands;
 using Gallows.view;
 using System;
 using System.Collections.Generic;
@@ -10,35 +11,37 @@ using ICommand = Gallows.infrastructure.Commands.ICommand;
 
 namespace Gallows.model
 {
-	internal class Presenter
-	{
-		public void StartGame()
-		{
-			List<ICommand> commands = new List<ICommand>();
-			commands.Add(new QuiteCommand());
-			commands.Add(new StartGameCommand());
+  internal class Presenter
+  {
+    public void StartGame()
+    {
+      IConfig config = AppConfig.Instance;
+      IView view = new ConsoleView();
+      State state = new();
 
-			IConfigDTO configDTO = new AppConfigDTO();
-			IDictionary dictionary = new DictionaryService();
-			IView view = new ConsoleView();
-			
-		IRender render = new ConsoleRender(configDTO.X,
-				configDTO.Y,
-				configDTO.LinesCount,
-				configDTO.WindowHeight);
+      List<ICommand> commands = new List<ICommand>();
+      commands.Add(new QuiteCommand(state));
+      commands.Add(new StartGameCommand(config, view, state));
 
-			Game game = new Game(configDTO,
-				dictionary,
-				view,
-				render,
-				configDTO.WordLength,
-				configDTO.MinWordsCount);
+      //IDictionary dictionary = new DictionaryService();
 
-			while (!Game.IsOver)
-			{
-				int index = view.Menu(commands);
-				commands[index].Execute(game);
-			}
-		}
-	}
+      //IRender render = new ConsoleRender(config.X,
+      //	config.Y,
+      //	config.LinesCount,
+      //	config.WindowHeight);
+
+      //Game game = new Game(config,
+      //	dictionary,
+      //	view,
+      //	render,
+      //	config.WordLength,
+      //	config.MinWordsCount);
+
+      while (state.IsRunning)
+      {
+        int index = view.Menu(commands);
+        commands[index].Execute();
+      }
+    }
+  }
 }
