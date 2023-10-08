@@ -13,7 +13,7 @@ namespace Gallows.infrastructure.Commands
     private IDictionary dictionary;
     private IView view;
     private IRender render;
-    private Game? game;
+    private Game game;
     public StartGameCommand(IConfig config, IView view)
     {
       this.dictionary = new DictionaryService();
@@ -23,18 +23,15 @@ namespace Gallows.infrastructure.Commands
         config.Y,
         config.LinesCount,
         config.WindowHeight);
-    }
-    public string Discription() => "Select and push to start game.";
-
-    public void Execute()
-    {
       this.game = new Game(config,
         this.dictionary,
         this.view,
         this.render,
         this.config.WordLength,
         this.config.MinWordsCount);
-      this.game.StartGame();
     }
+    public string Discription() => "Select and push to start game.";
+
+    public void Execute() => game.StartGame();
   }
 }
