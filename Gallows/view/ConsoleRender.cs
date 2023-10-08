@@ -23,6 +23,7 @@ namespace Gallows
 
     public ConsoleRender(
       State state,
+      IView view,
       int x,
       int y,
       int linesCount,
@@ -34,7 +35,7 @@ namespace Gallows
       if(OperatingSystem.IsWindows())
         Console.WindowHeight = windowHeight;
       this.State = state;
-      view = new ConsoleView();
+      this.view = (ConsoleView)view;
     }
 
     public void Draw(int count)

@@ -14,14 +14,15 @@ namespace Gallows.infrastructure.Commands
     private IView view;
     private IRender render;
     private Game game;
-    State state;
+    private State state;
     public StartGameCommand(IConfig config, IView view, State state)
     {
-      this.dictionary = new DictionaryService();
       this.view = view;
       this.config = config;
       this.state = state;
-      this.render = new ConsoleRender(this.state, 
+      this.dictionary = new DictionaryService();
+      this.render = new ConsoleRender(state,
+        view,
         config.X, 
         config.Y,
         config.LinesCount,
