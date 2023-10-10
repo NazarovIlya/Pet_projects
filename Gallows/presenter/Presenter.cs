@@ -15,27 +15,12 @@ namespace Gallows.model
   {
     public void StartGame()
     {
-      IConfig config = AppConfig.Instance;
       IView view = new ConsoleView();
       State state = new();
 
       List<ICommand> commands = new List<ICommand>();
       commands.Add(new QuiteCommand(state));
-      commands.Add(new StartGameCommand(config, view, state));
-
-      //IDictionary dictionary = new DictionaryService();
-
-      //IRender render = new ConsoleRender(config.X,
-      //	config.Y,
-      //	config.LinesCount,
-      //	config.WindowHeight);
-
-      //Game game = new Game(config,
-      //	dictionary,
-      //	view,
-      //	render,
-      //	config.WordLength,
-      //	config.MinWordsCount);
+      commands.Add(new StartGameCommand(view, state));
 
       while (state.IsRunning)
       {
