@@ -1,12 +1,5 @@
 ﻿using Gallows.infrastructure;
 using Gallows.infrastructure.Commands;
-using Gallows.view;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using ICommand = Gallows.infrastructure.Commands.ICommand;
 
 namespace Gallows.model
@@ -15,21 +8,23 @@ namespace Gallows.model
   {
     public IView View { get; set; }
     public State State { get; set; }
+    public List<ICommand> Commands { get; set; }
     public Presenter()
     {
       View = new ConsoleView();
       State = new State();
+      Commands = new List<ICommand>
+      {
+        new QuiteCommand(State),
+        new StartGameCommand(View, State)
+      };
     }
     public void StartGame()
     {
-      List<ICommand> commands = new List<ICommand>();
-      commands.Add(new QuiteCommand(State));
-      commands.Add(new StartGameCommand(View, State));
-
       while (State.IsRunning)
       {
-        int index = View.Menu(commands);
-        commands[index].Execute();
+        int index = View.Menu(Commands);
+        Commands[index].Execute();
       }
     }
   }
