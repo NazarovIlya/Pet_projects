@@ -13,18 +13,22 @@ namespace Gallows.model
 {
   internal class Presenter
   {
+    public IView View { get; set; }
+    public State State { get; set; }
+    public Presenter()
+    {
+      View = new ConsoleView();
+      State = new State();
+    }
     public void StartGame()
     {
-      IView view = new ConsoleView();
-      State state = new();
-
       List<ICommand> commands = new List<ICommand>();
-      commands.Add(new QuiteCommand(state));
-      commands.Add(new StartGameCommand(view, state));
+      commands.Add(new QuiteCommand(State));
+      commands.Add(new StartGameCommand(View, State));
 
-      while (state.IsRunning)
+      while (State.IsRunning)
       {
-        int index = view.Menu(commands);
+        int index = View.Menu(commands);
         commands[index].Execute();
       }
     }
